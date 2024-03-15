@@ -1,0 +1,62 @@
+# SERVER CONFIG
+server:
+    servlet.context-path: /disco/api
+    port: 5000
+
+spring:
+    profiles:
+        active: dev
+        include: common
+
+    # DATABASE CONFIG
+    datasource:
+        url: jdbc:postgresql://${spring.datasource.host}:5432/${spring.datasource.database}
+        host: discoprod.c7svqhmdoms5.us-east-1.rds.amazonaws.com
+        database: disco
+        username: postgres
+        password: x4x1$_d!sC0
+
+        hikari:
+            data-source-properties.stringtype: unspecified
+
+    messages.basename: messages
+
+    mvc.log-request-details: true
+
+mybatis:
+    type-aliases-package: com.xaxis.disco.api.domain.model
+    mapper-locations: mybatis/*Mapper.xml
+    configuration:
+        map-underscore-to-camel-case: true
+    type-handlers-package: com.xaxis.disco.api.adapters.outbound.repository.handlers
+
+logging:
+    level:
+        ROOT: INFO
+        web: DEBUG
+        tx: DEBUG
+
+    group.tx: org.mybatis.spring, org.springframework.jdbc.support.JdbcTransactionManager
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,env,beans
+
+springdoc.info.description: Servicio <code>Api Xaxis Disco </code> <br><br>
+
+aws:
+    accessKey: AKIAUYOVV522P6FKSQKA
+    secretKey: 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
+meta:
+    accessToken: EABG16mfxa14BAEAocs6w6moMVXhsqQsaGZArX6emaznOEzyElW9RG3MsNKpZCWBZAZAMNVeLpxfXZBuoHxLhKnLrt7kB8tMcu0svtMaWKvtu1SVLONldguCj1jwUslbtjayAsW64nnkWVv4ZCxfnH6giNZAe5oO1J0MYCRyx9Hm5MfhYVNkZCEed
+    appSecret: c9695a6930a87e24bc259f92dbd95ebb
+    accountId: 102054082667629
+tiktok:
+    appSecret: 78f182d3c7397e96e4844a985007df444c258fb7
+    accessToken: 6000e44a29ffa485fad29df1f91c7fd321937345
+    appId: 7138738082731261954
+api:
+    meta: https://graph.facebook.com/v15.0
+    tiktok: https://business-api.tiktok.com/open_api/v1.3

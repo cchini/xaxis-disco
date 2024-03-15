@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xaxis.disco.api.adapters.outbound.repository.CreativeMatrixRepositoryMyBatis">
+
+    <resultMap id="creativeMatrixRM" type="CreativeMatrix" autoMapping="true">
+        <id property="id" column="id" javaType="long"/>
+        <association property="status">
+            <id property="id" column="status_id"/>
+            <result property="name" column="status_name"/>
+            <result property="code" column="status_code"/>
+        </association>
+    </resultMap>
+
+    <select id="get" resultMap="creativeMatrixRM" resultType="CreativeMatrix">
+        SELECT creative_matrix.id,creative_matrix. name, template_name, status_id, last_update, deleted, account_id,
+        type_description,
+        created, modified,
+        creative_matrix_status.name as status_name,
+        creative_matrix_status.code as status_code
+        FROM creative_matrix
+        JOIN creative_matrix_status on creative_matrix_status.id = creative_matrix.status_id;
+    </select>
+</mapper>

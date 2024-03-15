@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xaxis.disco.api.adapters.outbound.repository.AccountRepositoryMyBatis">
+
+    <resultMap id="accountRM" type="Account" autoMapping="true">
+        <id property="id" column="id" javaType="long"/>
+        <collection property="ownerPlatforms" column="id"
+                    select="getAccountPlatformByAccountId"/>
+    </resultMap>
+
+    <select id="getAccountPlatformByAccountId" resultMap="accountPlatformRM" resultType="AccountPlatform">
+        SELECT account_platform.*,
+        account_platform_status.name as status_name,
+        account_platform_status.code as status_code,
+        platform_owner.name as platform_owner_name,
+        platform_owner.code as platform_owner_code
+        FROM account_platform
+        JOIN account_platform_status on account_platform_status.id = account_platform.status_id
+        JOIN platform_owner on platform_owner.id = account_platform.platform_owner_id
+        WHERE account_id =#{id}
+    </select>
+
+    <resultMap id="accountPlatformRM" type="AccountPlatform" autoMapping="true">
+        <id property="id" column="id" javaType="int"/>
+        <association property="status" columnPrefix="status_" resultMap="statusRM"/>
+        <association property="platformOwner" columnPrefix="platform_owner_" resultMap="platformOwnerRM"/>
+        <collection property="pages" column="id" select="getPageBy"/>
+    </resultMap>
+
+    <select id="getPageBy" resultType="AccountPage" resultMap="accountPageRM">
+        SELECT
+        account_page.*,
+        platform.name AS p_name,
+        platform.code AS p_code,
+        CASE when platform.enabled = true THEN 'true' ELSE 'false' END AS p_enabled
+        FROM
+        account_page
+        LEFT JOIN platform ON platform.id = account_page.platform_id
+        WHERE account_page.account_platform_id = #{id}
+        order by account_page.id desc
+        limit 1
+    </select>
+
+    <resultMap id="accountPageRM" type="AccountPage" autoMapping="true">
+        <id property="id" column="id" javaType="long"/>
+        <association property="platform" resultMap="platformRM" columnPrefix="p_"/>
+    </resultMap>
+
+    <resultMap id="platformRM" type="Platform" autoMapping="true">
+        <id property="id" column="id" javaType="int"/>
+    </resultMap>
+
+    <resultMap id="platformOwnerRM" type="GenericParametric" autoMapping="true">
+        <id property="id" column="id" javaType="short"/>
+    </resultMap>
+
+    <resultMap id="statusRM" type="GenericParametric" autoMapping="true">
+        <id property="id" column="id" javaType="short"/>
+    </resultMap>
+
+
+    <select id="getBy" resultType="Account" resultMap="accountRM">
+        select account.*
+        from account
+        join client on client.id = account.client_id
+        where
+        client.uuid= #{clientId}
+        and client.deleted = false
+        and account.deleted = false
+    </select>
+
+    <select id="create" parameterType="Account" resultMap="accountRM" resultType="Account">
+        INSERT INTO account( client_id, name, deleted, country_name,created,modified)
+        VALUES (#{clientId}, #{name}, false,#{countryName},now(),now())
+        RETURNING * ;
+    </select>
+
+    <select id="createAccountPlatform" parameterType="AccountPlatform" resultMap="accountPlatformRM"
+            resultType="AccountPlatform">
+        INSERT INTO account_platform( account_id, business_manager_id, business_manager_name, status_id,
+        platform_owner_id,created,modified )
+        VALUES (#{accountId}, #{businessManagerId}, #{businessManagerName},#{statusId}, #{platformOwnerId},now(),now())
+        RETURNING * ;
+    </select>
+
+    <select id="createAccountPage" parameterType="AccountPage" resultMap="accountPageRM"
+            resultType="AccountPage">
+        INSERT INTO account_page(
+        account_platform_id, platform_id, page_id, page_name, deleted)
+        VALUES (#{accountPlatformId}, #{platformId}, #{pageId}, #{pageName}, false)
+        RETURNING * ;
+    </select>
+
+
+    <select id="getAllPlatform" resultType="Platform" resultMap="platformRM">
+        select id,
+        name,
+        code,
+        CASE when platform.enabled = true THEN 'true' ELSE 'false' END AS enabled, platform_owner_id
+        from platform
+    </select>
+</mapper>

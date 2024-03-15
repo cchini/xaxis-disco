@@ -1,0 +1,9 @@
+spring:
+
+    # DATABASE CONFIG
+    datasource:
+        url: jdbc:postgresql://${spring.datasource.host}:5432/${spring.datasource.database}
+        host: discoprod.c7svqhmdoms5.us-east-1.rds.amazonaws.com
+        database: disco
+        username: postgres
+        password: x4x1$_d!sC0
