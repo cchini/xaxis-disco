@@ -1,0 +1,435 @@
+@import '../../../assets/scss/variables';
+
+.campaignsNewPage {
+  &_title {
+    font-size: 1.375rem;
+    color: $blue;
+    padding: 0 0 0.75rem;
+  }
+  .filtersNewCampaigns {
+    margin: 0 0 1.5rem;
+    background: $white;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    box-shadow: $boxShadow;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    &_field {
+      width: 150px;
+      .labelDatePicker {
+        font-size: 0.75rem;
+        font-weight: map-get($fonts, medium);
+        color: $darkGray;
+        margin: 0 0 0.375rem;
+        display: block;
+      }
+    }
+  }
+  .rulesConfig {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.25rem;
+    width: fit-content;
+    border: 1px solid lighten($lightGray, 30%);
+    background: $white;
+    box-shadow: $boxShadow;
+    width: 100%;
+    margin: 0 0 1.25rem;
+    &:last-child {
+      margin: 0;
+    }
+    &_title {
+      text-transform: uppercase;
+      background: $purple;
+      color: $white;
+      font-size: 1rem;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    }
+    .cntCardsRules {
+      padding: 0.5rem 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      height: fit-content;
+      .groupRule {
+        display: flex;
+      }
+      .cardRule {
+        width: 200px;
+        min-height: 150px;
+        height: 100%;
+        background: $white;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+        box-shadow: $boxShadow;
+        gap: 1rem;
+        margin: 0 0.5rem 0;
+        &_title {
+          color: $blue;
+          font-size: 0.875rem;
+          padding: 0 0 0.5rem;
+        }
+        &_detail {
+          color: lighten($lightGray, 20%);
+          font-size: 0.625rem;
+        }
+        &.cardRule__center {
+          text-align: center;
+          padding: 2rem 0 0;
+          cursor: pointer;
+          .cardRule_icon {
+            color: $darkGray;
+            font-size: 1rem;
+          }
+          .cardRule_text {
+            color: $darkGray;
+            font-size: 1rem;
+            width: 100%;
+            font-weight: map-get($fonts, medium);
+            padding: 0.75rem 0 0;
+          }
+        }
+
+        .listSwitchRules {
+          margin: 0.5rem 0 0;
+          &_item {
+            margin: 0 0 0.75rem;
+            &:last-child {
+              margin: 0;
+            }
+            .swicthRule {
+              display: flex;
+              flex-direction: row-reverse;
+              justify-content: flex-end;
+              &.swicthRule__sona {
+                > span {
+                  color: $darkGray;
+                  margin: 0 0 0 0.5rem;
+                  font-weight: map-get($fonts, bold);
+                  font-size: 1rem;
+                }
+              }
+              .labelsIcons {
+                display: flex;
+                gap: 0.5rem;
+                color: $darkGray;
+                margin: 0 0 0 0.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .footerNewCampaign {
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+}
+
+.modalCampaigns {
+  padding: 2rem 1.25rem;
+  width: 850px;
+  height: 600px;
+  max-height: 600px;
+  overflow-y: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  .modal_header {
+    padding: 0 !important;
+    width: 100%;
+  }
+  .headerModalCampaigns {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 1rem;
+    border-bottom: 1px solid lighten($lightGray, 20%);
+
+    .headerModalCampaignsTitle {
+      &_detail {
+        margin: 0;
+        padding: 0 0 0.25rem;
+        color: $blue;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+      &_context {
+        text-transform: uppercase;
+        margin: 0;
+        color: $blue;
+      }
+    }
+    &_btn {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      padding: 0.25rem;
+    }
+  }
+  .modalCampaignsContent {
+    display: flex;
+    overflow-y: scroll;
+    max-height: 450px;
+    flex-wrap: wrap;
+    padding: 1rem 0 0;
+    width: 100%;
+    &_text {
+      width: 100%;
+      color: $lightGray;
+      font-size: 0.75rem;
+    }
+    .searchOptions {
+      width: 100%;
+      display: flex;
+      padding: 1rem 0;
+      gap: 1rem;
+      &_field {
+        flex-grow: 1;
+        // margin: 0 1rem 0 0;
+      }
+    }
+    .rulesSection {
+      width: 100%;
+      .accordion {
+        border: 1px solid lighten($lightGray, 20%);
+        border-radius: 0.25rem;
+        background: lighten($lightGray, 45%);
+        margin: 0 0 1.25rem;
+        transition: 0.35s all ease-in;
+        &_title {
+          color: $blue;
+          position: relative;
+          background: $white;
+          padding: 0.5rem 1rem;
+          border-radius: calc(0.25rem - 1px);
+          list-style: none;
+          font-weight: map-get($fonts, medium);
+          cursor: pointer;
+          &::marker,
+          &::-webkit-details-marker {
+            display: none;
+          }
+          &::after {
+            font-family: 'icomoon';
+            color: $blue;
+            position: absolute;
+            content: '\e91f';
+            right: 1rem;
+            font-size: 0.875rem;
+          }
+        }
+        .cntItemAccordion {
+          &.cntItemAccordion_first {
+            .headerFieldsColumn {
+              background: $white;
+              padding: 0.75rem 1rem;
+              .list {
+                display: flex;
+                gap: 0.75rem;
+                &_item {
+                  flex-grow: 1;
+                  color: $darkGray;
+                  font-size: 0.75rem;
+                  max-width: 185px;
+                }
+              }
+            }
+            .listCreateRule {
+              padding: 0.75rem 1rem;
+              .listSelect {
+                display: flex;
+                gap: 0.75rem;
+                align-items: center;
+                &_item {
+                  flex-grow: 1;
+                  max-width: 185px;
+                  .selectRule {
+                    .reactSelect__control {
+                      max-width: 100%;
+                      min-width: 100%;
+                      width: 100%;
+                    }
+                  }
+                  .btnRemoveRow {
+                    background: $pink;
+                    padding: 0.25rem 0.375rem;
+                    color: $white;
+                    font-size: 0.875rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 0.125rem;
+                    &:hover {
+                      background: lighten($pink, 20%);
+                    }
+                    &:active {
+                      transform: scale(0.95);
+                    }
+                  }
+                  &.listSelect_item__btn {
+                    flex-grow: 0;
+                    max-width: none;
+                  }
+                }
+              }
+              .addListSelect {
+                display: flex;
+                justify-content: flex-end;
+                text-transform: uppercase;
+                margin: 0.5rem 0 0;
+                &_btn {
+                  min-width: auto;
+                  text-transform: uppercase;
+                  .iconXaxis {
+                    margin: 0 0 0 0.25rem;
+                  }
+                }
+              }
+            }
+            .andSection {
+              background: $white;
+              padding: 0.75rem 1rem;
+              position: relative;
+              height: 44px;
+              &_text {
+                background: $white;
+                color: $blue;
+                text-transform: uppercase;
+                position: absolute;
+                z-index: 2;
+              }
+              &_line {
+                position: absolute;
+                height: 36px;
+                width: 1px;
+                left: 31px;
+                top: 4px;
+                background: rgba($blue, 0.8);
+                z-index: 1;
+              }
+            }
+          }
+          &.cntItemAccordion__table {
+            padding: 0.75rem 1rem 1rem;
+            .cntItemAccordion_table {
+              width: 100%;
+              margin: 0 0 1rem;
+              .headerTable {
+                &_item {
+                  min-width: 100px;
+                  flex: 1;
+                  &.headerTable_item__actions {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 50px;
+                    min-width: 50px;
+                  }
+                }
+              }
+              .contentTable {
+                &_item {
+                  min-width: 100px;
+                  flex: 1;
+                  &.contentTable_item__actions {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 50px;
+                    min-width: 50px;
+                    .btnRemoveRow {
+                      background: $pink;
+                      padding: 0.25rem 0.375rem;
+                      color: $white;
+                      font-size: 0.875rem;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      border-radius: 0.125rem;
+                      &:hover {
+                        background: lighten($pink, 20%);
+                      }
+                      &:active {
+                        transform: scale(0.95);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &_btn {
+            margin: 0 0 1rem 1rem;
+            text-transform: uppercase;
+            min-width: auto;
+            .iconXaxis {
+              margin: 0 0 0 0.75rem;
+            }
+            &.cntItemAccordion_btn__plus {
+              margin: 0;
+              .iconXaxis {
+                margin: 0;
+              }
+            }
+          }
+
+          &_listOptions {
+            padding: 0.75rem 1rem 1rem;
+            display: flex;
+            gap: 0.75rem;
+            .switchChannel {
+              display: flex;
+              align-items: center;
+              // flex-direction: row-reverse;
+              // justify-content: flex-end;
+              // margin: 0 0 1rem;
+              // &:last-child {
+              //   margin: 0;
+              // }
+              &.switchChannel__sona {
+                > span {
+                  color: $darkGray;
+                  font-weight: map-get($fonts, bold);
+                  font-size: 1rem;
+                  margin: 0 0.5rem 0 0;
+                }
+              }
+              .labelsIcons {
+                display: flex;
+                gap: 0.5rem;
+                color: $darkGray;
+                margin: 0 0.5rem 0 0;
+              }
+            }
+          }
+        }
+        &[open] {
+          .accordion_title {
+            border-bottom: 1px solid lighten($lightGray, 20%);
+            border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+
+            &::after {
+              content: '\e91c';
+            }
+          }
+        }
+      }
+    }
+  }
+  .footerModal {
+    margin: 0.75rem 0 0;
+    padding: 0.75rem 0 0;
+    border-top: 1px solid;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    width: 100%;
+    align-self: flex-end;
+  }
+}

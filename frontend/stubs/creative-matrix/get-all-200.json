@@ -1,0 +1,49 @@
+{
+  "creativeMatrixList": [
+    {
+      "id": 6,
+      "name": "Creattive_Matrix_2022_May_Getir_All_Channels_3",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "accountId": 2,
+      "deleted": false,
+      "created": "2022-09-15T01:59:12.315+00:00",
+      "modified": "2022-09-15T01:59:12.315+00:00"
+    },
+    {
+      "id": 5,
+      "name": "Creattive_Matrix_2022_May_Getir_All_Channels_2",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "accountId": 2,
+      "deleted": false,
+      "created": "2022-09-15T01:59:12.315+00:00",
+      "modified": "2022-09-15T01:59:12.315+00:00"
+    },
+    {
+      "id": 4,
+      "name": "Creattive_Matrix_2022_May_Getir_All_Channels_1",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "accountId": 2,
+      "deleted": false,
+      "created": "2022-09-15T01:59:12.315+00:00",
+      "modified": "2022-09-15T01:59:12.315+00:00"
+    }
+  ]
+}

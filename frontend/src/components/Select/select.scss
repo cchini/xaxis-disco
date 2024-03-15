@@ -1,0 +1,16 @@
+@import '../../assets/scss/variables';
+
+.cntSelect {
+  height: fit-content;
+  &_label {
+    font-size: 0.75rem;
+    font-weight: map-get($fonts, medium);
+    color: $darkGray;
+    margin: 0 0 0.375rem;
+    display: block;
+  }
+}
+
+.reactSelect__control {
+  min-width: 200px;
+}

@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?yuy3yx');
+  src: url('fonts/icomoon.eot?yuy3yx#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?yuy3yx') format('truetype'),
+    url('fonts/icomoon.woff?yuy3yx') format('woff'),
+    url('fonts/icomoon.svg?yuy3yx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.iconXaxis {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconXaxis-tiktok:before {
+  content: '\e900';
+}
+.iconXaxis-instagram:before {
+  content: '\e901';
+}
+.iconXaxis-facebook-messenger:before {
+  content: '\e902';
+}
+.iconXaxis-facebook-f:before {
+  content: '\e903';
+}
+.iconXaxis-facebook:before {
+  content: '\e904';
+}
+.iconXaxis-video:before {
+  content: '\e905';
+}
+.iconXaxis-users:before {
+  content: '\e906';
+}
+.iconXaxis-user-circle:before {
+  content: '\e907';
+}
+.iconXaxis-upload:before {
+  content: '\e908';
+}
+.iconXaxis-trash-alt:before {
+  content: '\e909';
+}
+.iconXaxis-times:before {
+  content: '\e90a';
+}
+.iconXaxis-search:before {
+  content: '\e90b';
+}
+.iconXaxis-question-circle:before {
+  content: '\e90c';
+}
+.iconXaxis-power-off:before {
+  content: '\e90d';
+}
+.iconXaxis-plus:before {
+  content: '\e90e';
+}
+.iconXaxis-paper-plane:before {
+  content: '\e90f';
+}
+.iconXaxis-map-marked-alt:before {
+  content: '\e910';
+}
+.iconXaxis-list:before {
+  content: '\e911';
+}
+.iconXaxis-images:before {
+  content: '\e912';
+}
+.iconXaxis-image:before {
+  content: '\e913';
+}
+.iconXaxis-home:before {
+  content: '\e914';
+}
+.iconXaxis-folder:before {
+  content: '\e915';
+}
+.iconXaxis-folders:before {
+  content: '\e916';
+}
+.iconXaxis-filter:before {
+  content: '\e917';
+}
+.iconXaxis-edit:before {
+  content: '\e918';
+}
+.iconXaxis-download:before {
+  content: '\e919';
+}
+.iconXaxis-cloud-upload:before {
+  content: '\e91a';
+}
+.iconXaxis-clock:before {
+  content: '\e91b';
+}
+.iconXaxis-chevron-down:before {
+  content: '\e91c';
+}
+.iconXaxis-chevron-left:before {
+  content: '\e91d';
+}
+.iconXaxis-chevron-right:before {
+  content: '\e91e';
+}
+.iconXaxis-chevron-up:before {
+  content: '\e91f';
+}
+.iconXaxis-chart-pie-alt:before {
+  content: '\e920';
+}
+.iconXaxis-chart-pie:before {
+  content: '\e921';
+}
+.iconXaxis-bell:before {
+  content: '\e922';
+}
+.iconXaxis-calendar-alt:before {
+  content: '\e923';
+}
+.iconXaxis-calendar:before {
+  content: '\e924';
+}
+.iconXaxis-border-none:before {
+  content: '\e925';
+}

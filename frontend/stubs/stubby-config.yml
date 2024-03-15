@@ -1,0 +1,40 @@
+- request:
+    url: /disco/api/account
+    method: GET
+    query:
+      accountId: 6d1ea72d-8173-4aa2-b0f4-7cd574c5d24c
+  response:
+    - status: 200
+      latency: 500
+      headers:
+        content-type: application/json
+      file: ./account/get-all-200.json
+- request:
+    url: /disco/api/account/sendMail
+    method: POST
+    query:
+      to: correo@gmail.com
+  response:
+    - status: 200
+      latency: 500
+      headers:
+        content-type: application/json
+      file: ./campaign/get-all-200.json
+- request:
+    url: /disco/api/creative-matrix
+    method: GET
+  response:
+    - status: 200
+      latency: 500
+      headers:
+        content-type: application/json
+      file: ./creative-matrix/get-all-200.json
+- request:
+    url: /disco/api/campaign
+    method: GET
+  response:
+    - status: 200
+      latency: 500
+      headers:
+        content-type: application/json
+      file: ./campaign/get-all-200.json

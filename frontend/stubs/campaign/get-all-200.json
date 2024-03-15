@@ -1,0 +1,61 @@
+{
+  "campaigns": [
+    {
+      "id": 6,
+      "accountId": 2,
+      "name": "2022_May_Getir_All_Channels_3",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "startDate": "2022-09-18T03:00:00.000+00:00",
+      "endDate": "2022-09-20T03:00:00.000+00:00",
+      "budget": 50,
+      "kpi": "clicks",
+      "goal": 2000,
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "modified": "2022-09-15T01:59:12.315+00:00",
+      "created": "2022-09-15T01:59:12.315+00:00"
+    },
+    {
+      "id": 5,
+      "accountId": 2,
+      "name": "2022_May_Getir_All_Channels_2",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "startDate": "2022-09-18T03:00:00.000+00:00",
+      "endDate": "2022-09-20T03:00:00.000+00:00",
+      "budget": 50,
+      "kpi": "clicks",
+      "goal": 2000,
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "modified": "2022-09-15T01:59:12.315+00:00",
+      "created": "2022-09-15T01:59:12.315+00:00"
+    },
+    {
+      "id": 4,
+      "accountId": 2,
+      "name": "2022_May_Getir_All_Channels_1",
+      "typeDescription": "FB & IG, TikTok, SONA",
+      "startDate": "2022-09-18T03:00:00.000+00:00",
+      "endDate": "2022-09-20T03:00:00.000+00:00",
+      "budget": 50,
+      "kpi": "clicks",
+      "goal": 2000,
+      "statusId": 1,
+      "status": {
+        "id": 1,
+        "name": "active",
+        "code": "ACTIVE"
+      },
+      "modified": "2022-09-15T01:59:12.315+00:00",
+      "created": "2022-09-15T01:59:12.315+00:00"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "baseUrl": "./",
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@utilities/*": ["./utilities/*"],
+      "@models/*": ["./models/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@services/*": ["./services/*"],
+      "@redux/*": ["./redux/*"],
+      "@adapters/*": ["./adapters/*"],
+      "@routes/*": ["./routes/*"],
+      "@mocks/*": ["./mocks/*"]
+    },
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "lib": ["es5", "es6", "dom", "ES2019.Array"],
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/**/*"],
+  "exclude": ["node_modules", "build"]
+}
