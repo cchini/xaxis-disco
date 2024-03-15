@@ -1,0 +1,179 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.6.0'
+    id 'maven-publish'
+    id 'com.jfrog.artifactory' version '4.21.0'
+    id "org.flywaydb.flyway" version "7.14.0"
+}
+
+group = 'com.xaxis.disco'
+version = '0.2.0'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    allJars
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repository-achartengine.forge.cloudbees.com/snapshot/"
+    }
+}
+
+ext {
+    set('mybatisVersion', '2.2.0')
+    set('springCloudVersion', "2020.0.3")
+}
+
+dependencies {
+
+    runtimeOnly("org.postgresql:postgresql")
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'io.swagger.core.v3:swagger-annotations:2.0.0-rc4'
+    //our libraries
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'javax.servlet:servlet-api:2.5'
+
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    implementation 'com.facebook.business.sdk:facebook-java-business-sdk:14.0.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.jayway.jsonpath:json-path:2.7.0'
+    implementation 'com.amazonaws:aws-java-sdk-ses:1.12.305'
+    implementation 'software.amazon.awssdk:s3:2.17.276'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign:feign-httpclient'
+}
+
+dependencyManagement {
+    imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" }
+}
+
+springBoot {
+    buildInfo()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task unitTest(type: Test) {
+    useJUnitPlatform {
+        excludeTags 'integration-test'
+    }
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform {
+        includeTags 'integration-test'
+    }
+}
+
+jacocoTestReport {
+    getExecutionData().setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
+    reports.xml.enabled true
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['**/DiscoApplication.class'])
+        }))
+    }
+}
+
+pitest {
+    threads.set(4)
+    timestampedReports.set(false)
+    junit5PluginVersion.set('0.12')
+    targetClasses.set(['com.xaxis.disco.api.adapters.*',
+                       'com.xaxis.disco.api.domain.*'])
+    excludedClasses.set(['*.DiscoApplication'])
+}
+
+task discoverAllJars {
+    ext.discoveredFiles = []
+    doLast {
+        file("build/libs").eachFile { file ->
+            if (file.name.endsWith("jar")) {
+                println "found file ${file.name}"
+                discoveredFiles << file
+                artifacts {
+                    allJars file
+                }
+            }
+        }
+    }
+}
+
+
+task configureUploadAllJars {
+    dependsOn discoverAllJars
+    doLast {
+        uploadAllJars {
+            repositories {
+                mavenDeployer {
+                    discoverAllJars.discoveredFiles.each { discoveredFile ->
+                        def filterName = discoveredFile.name - ".jar"
+                        addFilter(filterName) { artifact, file ->
+                            file.name == discoveredFile.name
+                        }
+                        pom(filterName).artifactId = filterName
+                    }
+                }
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact("$buildDir/libs/${project.name}-${version}.jar")
+        }
+    }
+}
+
+artifactory {
+    publish {
+        contextUrl = project.findProperty('artifactory_contextUrl')
+        repository {
+            repoKey = project.findProperty('artifactory_repoKey')
+            username = project.findProperty('artifactory_user')
+            password = project.findProperty('artifactory_password')
+            mavenCompatible = true
+        }
+        defaults {
+            publishConfigs('allJars')
+            publications('mavenJava')
+            properties = ['branch': project.findProperty('branch'), 'commit': project.findProperty('commit')]
+            publishBuildInfo = true
+            publishArtifacts = true
+            publishPom = true
+            publishIvy = false
+        }
+    }
+}
+artifactoryPublish {
+    dependsOn jar
+}
+
+flyway {
+    url = 'jdbc:postgresql://discoprod.c7svqhmdoms5.us-east-1.rds.amazonaws.com:5432/disco'
+    user = 'postgres'
+    password = 'x4x1$_d!sC0'
+    locations = ["filesystem:${project.projectDir}/resources/database/"]
+
+}
